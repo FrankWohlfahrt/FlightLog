@@ -1,4 +1,4 @@
-﻿namespace FlightSpotDB
+﻿namespace FlightLogGUI
 {
     partial class FlightLogForm
     {
@@ -56,7 +56,7 @@
             this.dateiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1269, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1070, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -77,9 +77,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 593);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 504);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1269, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1070, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -90,7 +90,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(0, 24);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1269, 569);
+            this.tabControlMain.Size = new System.Drawing.Size(1070, 480);
             this.tabControlMain.TabIndex = 3;
             // 
             // tabPageSpots
@@ -100,7 +100,7 @@
             this.tabPageSpots.Location = new System.Drawing.Point(4, 22);
             this.tabPageSpots.Name = "tabPageSpots";
             this.tabPageSpots.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSpots.Size = new System.Drawing.Size(1261, 543);
+            this.tabPageSpots.Size = new System.Drawing.Size(1062, 454);
             this.tabPageSpots.TabIndex = 0;
             this.tabPageSpots.Text = "Fluggelände";
             this.tabPageSpots.UseVisualStyleBackColor = true;
@@ -108,15 +108,15 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(127, 3);
+            this.splitContainer1.Location = new System.Drawing.Point(190, 3);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.dataGridViewSpots);
-            this.splitContainer1.Size = new System.Drawing.Size(1131, 537);
-            this.splitContainer1.SplitterDistance = 301;
+            this.splitContainer1.Size = new System.Drawing.Size(869, 448);
+            this.splitContainer1.SplitterDistance = 251;
             this.splitContainer1.TabIndex = 2;
             // 
             // dataGridViewSpots
@@ -128,7 +128,7 @@
             this.dataGridViewSpots.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewSpots.Name = "dataGridViewSpots";
             this.dataGridViewSpots.ReadOnly = true;
-            this.dataGridViewSpots.Size = new System.Drawing.Size(1131, 301);
+            this.dataGridViewSpots.Size = new System.Drawing.Size(869, 251);
             this.dataGridViewSpots.TabIndex = 0;
             // 
             // panel1
@@ -138,7 +138,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(124, 537);
+            this.panel1.Size = new System.Drawing.Size(187, 448);
             this.panel1.TabIndex = 0;
             // 
             // comboBoxRating
@@ -152,7 +152,7 @@
             "****"});
             this.comboBoxRating.Location = new System.Drawing.Point(5, 25);
             this.comboBoxRating.Name = "comboBoxRating";
-            this.comboBoxRating.Size = new System.Drawing.Size(113, 21);
+            this.comboBoxRating.Size = new System.Drawing.Size(169, 21);
             this.comboBoxRating.TabIndex = 0;
             this.comboBoxRating.SelectedIndexChanged += new System.EventHandler(this.comboBoxRating_SelectedIndexChanged);
             // 
@@ -170,7 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1269, 615);
+            this.ClientSize = new System.Drawing.Size(1070, 526);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);

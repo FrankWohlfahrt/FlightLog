@@ -8,8 +8,8 @@
     <ProjectGuid>{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FlightSpot.GUI</RootNamespace>
-    <AssemblyName>FlightSpotDB</AssemblyName>
+    <RootNamespace>FlightLogGUI</RootNamespace>
+    <AssemblyName>FlightLogGUI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableConverter.cs" />
     <EmbeddedResource Include="FlightLogGui.resx">
       <DependentUpon>FlightLogGui.cs</DependentUpon>
     </EmbeddedResource>

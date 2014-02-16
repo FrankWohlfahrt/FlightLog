@@ -10,7 +10,7 @@ using FlightSpot.Database;
 using System.IO;
 using Utilities.Grids;
 
-namespace FlightSpotDB
+namespace FlightLogGUI
 {
     public partial class FlightLogForm : Form
     {
@@ -74,8 +74,8 @@ namespace FlightSpotDB
             page.Controls.Add(dgv);
             tabControlMain.TabPages.Add(page);
 
-            List<String> columns = new List<string> { "Date", "Glider", "LaunchSite", "LandingSite", "Rating", "AirTimeHours", "Comment"};
-            GridUtils.updateDataSourceKeepPosition(dgv, flights, columns, "Comment");
+            DataTable table = TableConverter.flightLogsToDataTable(flights);
+            GridUtils.updateDataSourceKeepPosition(dgv, table, null, "Kommentar");
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace FlightSpotDB
         private void showFlightSpots(int Rating) {
             List<FlightSpotEntry> spots;
             m_fsdb.getFlightSpotList(out spots, Rating);
-            List<String> columns = new List<string> { "Name", "Country", "MinHeight", "PostCode", "WindDirection", "Rating" };
-            GridUtils.updateDataSourceKeepPosition(dataGridViewSpots, spots, columns, "Name");
+            DataTable table = TableConverter.flightSpotsToDataTable(spots);
+            GridUtils.updateDataSourceKeepPosition(dataGridViewSpots, table, null, "Name");
         }
 
         /// <summary>
