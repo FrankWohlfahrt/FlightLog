@@ -17,8 +17,12 @@ namespace FlightSpotDB
         private const string flightlogDir = "flightlog";
         private const string flightlogDB = "flightlogDB.sqlite";
 
-        private fsDatabase m_fsdb = null; 
+        private fsDatabase m_fsdb = null;
 
+        #region create & destroy
+        /// <summary>
+        /// constructor
+        /// </summary>
         public FlightLogForm()
         {
             InitializeComponent();
@@ -30,10 +34,21 @@ namespace FlightSpotDB
             showFlightsOfUser(1);
         }
 
+        /// <summary>
+        /// quit the GUI
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e) {
+            m_fsdb.Dispose();
             this.Close();
         }
+        #endregion
 
+        /// <summary>
+        /// show all flights of a user
+        /// </summary>
+        /// <param name="UserId"></param>
         private void showFlightsOfUser(int UserId) {
             List<FlightLogEntry> flights;
             m_fsdb.getFlightLogList(out flights, UserId);
@@ -43,28 +58,42 @@ namespace FlightSpotDB
             for (int i = max; i != min; i--) {
                 createTabPageForFlightList(flights.FindAll(fl => fl.Date.Year == i), i);
             }
-         
         }
 
+        /// <summary>
+        /// create a new tab and populate it with the flights of a year
+        /// </summary>
+        /// <param name="flights"></param>
+        /// <param name="Year"></param>
         private void createTabPageForFlightList(List<FlightLogEntry> flights, int Year) {
             TabPage page = new TabPage();
             page.Text = Year.ToString();
 
             DataGridView dgv = new DataGridView();
             dgv.Dock = DockStyle.Fill;
-
             page.Controls.Add(dgv);
-            GridUtils.updateDataSourceKeepPosition(dgv, flights, null, "Comment");
-
             tabControlMain.TabPages.Add(page);
+
+            List<String> columns = new List<string> { "Date", "Glider", "LaunchSite", "LandingSite", "Rating", "AirTimeHours", "Comment"};
+            GridUtils.updateDataSourceKeepPosition(dgv, flights, columns, "Comment");
         }
 
+        /// <summary>
+        /// populate grid with flightspots
+        /// </summary>
+        /// <param name="Rating"></param>
         private void showFlightSpots(int Rating) {
             List<FlightSpotEntry> spots;
             m_fsdb.getFlightSpotList(out spots, Rating);
-            GridUtils.updateDataSourceKeepPosition(dataGridViewSpots, spots, null, 6);
+            List<String> columns = new List<string> { "Name", "Country", "MinHeight", "PostCode", "WindDirection", "Rating" };
+            GridUtils.updateDataSourceKeepPosition(dataGridViewSpots, spots, columns, "Name");
         }
 
+        /// <summary>
+        /// rating changed, show flightspots matching the filter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxRating_SelectedIndexChanged(object sender, EventArgs e) {
             showFlightSpots(comboBoxRating.SelectedIndex);
         }
