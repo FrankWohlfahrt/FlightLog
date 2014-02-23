@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FlightSpot.Database;
 using System.Data;
+using Utilities.Grids;
 
 namespace FlightLogGUI {
 
@@ -25,33 +26,21 @@ namespace FlightLogGUI {
         private const string COL_FLIGHT_SPOT_RATING = "Bewertung";
 
 
-        private static void addColumn(DataTable table, String colName) {
-            DataColumn col = new DataColumn();
-            col.Caption = colName;
-            col.ColumnName = colName;
-            table.Columns.Add(col);
-        }
-
-        private static void addColumns(DataTable table, List<String> columns) {
-            foreach (String col in columns) {
-                addColumn(table, col);
-            }
-        }
-        
         /// <summary>
         /// add a row with flight information
         /// </summary>
         /// <param name="table"></param>
         /// <param name="flight"></param>
         private static void addFlightRow(DataTable table, FlightLogEntry flight) {
-            DataRow row = table.NewRow();
-            table.Rows.Add(row); 
-            row[0] = flight.Id;
-            row[1] = flight.Glider;
-            row[2] = flight.LaunchSite;
-            row[3] = flight.LandingSite;
-            row[4] = flight.Airtime;
-            row[5] = flight.Comment;
+            GridUtils.addRow(
+                table, 
+                flight.Id.ToString(), 
+                flight.Glider,
+                flight.LaunchSite,
+                flight.LandingSite,
+                flight.Airtime,
+                flight.Comment
+            );
         }
 
         /// <summary>
@@ -69,7 +58,7 @@ namespace FlightLogGUI {
                 COL_FLIGHT_LOG_AIRTIME, 
                 COL_FLIGHT_LOG_COMMENT 
             };
-            addColumns(table, columns);
+            GridUtils.addColumns(table, columns);
 
             foreach (FlightLogEntry flight in flights) {
                addFlightRow(table, flight);
@@ -84,19 +73,21 @@ namespace FlightLogGUI {
         /// <param name="table"></param>
         /// <param name="spot"></param>
         private static void addFlightSpotRow(DataTable table, FlightSpotEntry spot) {
-            DataRow row = table.NewRow();
-            table.Rows.Add(row);
-            row[0] = spot.Name;
-            row[1] = spot.Country;
-            row[2] = spot.PostCode;
-            row[3] = spot.Description;
-            row[4] = spot.MinHeight;
-            row[5] = spot.WindDirection;
             String rating = String.Empty;
             for (int i = 1; i <= spot.Rating; i++) {
                 rating += "*";
             }
-            row[6] = rating;
+
+            GridUtils.addRow(
+                table,
+                spot.Name,
+                spot.Country,
+                spot.PostCode,
+                spot.Description,
+                spot.MinHeight,
+                spot.WindDirection,
+                rating
+            );
         }
 
         /// <summary>
@@ -115,7 +106,7 @@ namespace FlightLogGUI {
                 COL_FLIGHT_SPOT_WIND,
                 COL_FLIGHT_SPOT_RATING
             };
-            addColumns(table, columns);
+            GridUtils.addColumns(table, columns);
 
             foreach (FlightSpotEntry spot in spots) {
                addFlightSpotRow(table, spot);

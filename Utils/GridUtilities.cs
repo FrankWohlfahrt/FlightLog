@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Utilities.Grids {
 
@@ -203,5 +204,52 @@ namespace Utilities.Grids {
 
             return item;
         }
+
+        /// <summary>
+        /// create a new row and add it to the table
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="col1"></param>
+        /// <param name="col2"></param>
+        public static void addRow(DataTable table, params String[] cols) {
+            DataRow row;
+            row = table.NewRow();
+            row.BeginEdit();
+            int maxcol = row.Table.Columns.Count;
+            for (int i = 0; i < cols.Length; i++) {
+                if (i < maxcol) {
+                    row[i] = cols[i];
+                }
+            }
+            row.EndEdit();
+            table.Rows.Add(row);
+        }
+
+        /// <summary>
+        /// add a column to the table
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="colName"></param>
+        public static void addColumn(DataTable table, String colName)
+        {
+            DataColumn col = new DataColumn();
+            col.Caption = colName;
+            col.ColumnName = colName;
+            table.Columns.Add(col);
+        }
+
+        /// <summary>
+        /// add a column to the table for each string in the list
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="columns"></param>
+        public static void addColumns(DataTable table, List<String> columns)
+        {
+            foreach (String col in columns)
+            {
+                addColumn(table, col);
+            }
+        }
+        
     }
 }
