@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using FlightSpot.Database;
 using System.IO;
 using Utilities.Grids;
+using System.Text.RegularExpressions;
 
 namespace FlightLogGUI
 {
@@ -83,10 +84,12 @@ namespace FlightLogGUI
         /// </summary>
         /// <param name="Rating"></param>
         private void showFlightSpots(int Rating) {
-            List<FlightSpotEntry> spots;
+            List<FlightSpotDBEntry> spots;
             m_fsdb.getFlightSpotList(out spots, Rating);
-            DataTable table = TableConverter.flightSpotsToDataTable(spots);
-            GridUtils.updateDataSourceKeepPosition(dataGridViewSpots, table, null, "Name");
+            List<String> visibleColumns;
+            List<FlightSpotGui> display;
+            TableConverter.flightSpotTable(spots, out visibleColumns, out display);
+            GridUtils.updateDataSourceKeepPosition(dataGridViewSpots, display, visibleColumns, "Name");
         }
 
         /// <summary>
@@ -96,6 +99,36 @@ namespace FlightLogGUI
         /// <param name="e"></param>
         private void comboBoxRating_SelectedIndexChanged(object sender, EventArgs e) {
             showFlightSpots(comboBoxRating.SelectedIndex);
+        }
+
+        public string StripHTML(string HTMLText) {
+            Regex reg = new Regex("<[^>]+>", RegexOptions.IgnoreCase);
+            return reg.Replace(HTMLText, "");
+        }
+
+        /// <summary>
+        /// show all informations about the flightspot
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridViewSpots_SelectionChanged(object sender, EventArgs e) {
+            var obj = dataGridViewSpots.CurrentRow.DataBoundItem;
+            if (obj is FlightSpotGui) {
+                labelWeatherLink.Text = (obj as FlightSpotGui).WindFinderLink;
+                richTextBox1.Text = StripHTML((obj as FlightSpotGui).AirspaceInfo);
+
+                List<AdditionalInfos> InfoList;
+                m_fsdb.getAdditionalInfoList(out InfoList, (obj as FlightSpotGui).Hash);
+                StringBuilder sb = new StringBuilder();
+                foreach (AdditionalInfos info in InfoList) {
+                    sb.Append(info.Name);
+                    sb.Append(Environment.NewLine);
+                    sb.Append(info.Data);
+                    sb.Append(Environment.NewLine);
+                    sb.Append(Environment.NewLine);
+                }
+                textBoxAirspace.Text = sb.ToString();
+            }
         }
 
     }

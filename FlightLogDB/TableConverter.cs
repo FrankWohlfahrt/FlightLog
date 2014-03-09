@@ -72,19 +72,22 @@ namespace FlightLogGUI {
         /// </summary>
         /// <param name="table"></param>
         /// <param name="spot"></param>
-        private static void addFlightSpotRow(DataTable table, FlightSpotEntry spot) {
+        private static void addFlightSpotRow(DataTable table, FlightSpotDBEntry spot) {
             String rating = String.Empty;
             for (int i = 1; i <= spot.Rating; i++) {
                 rating += "*";
             }
 
+            FlightSpotGui fs = new FlightSpotGui(spot);
+            table.Rows.Add(fs);
+
             GridUtils.addRow(
                 table,
                 spot.Name,
                 spot.Country,
-                spot.PostCode,
+                spot.City,
                 spot.Description,
-                spot.MinHeight,
+                spot.Height,
                 spot.WindDirection,
                 rating
             );
@@ -95,8 +98,32 @@ namespace FlightLogGUI {
         /// </summary>
         /// <param name="spots"></param>
         /// <returns></returns>
-        public static DataTable flightSpotsToDataTable(List<FlightSpotEntry> spots) {
+        public static void flightSpotTable(List<FlightSpotDBEntry> spots, out List<String> columns, out List<FlightSpotGui> display) {
+            columns = new List<string>() { 
+                COL_FLIGHT_SPOT_NAME,
+                COL_FLIGHT_SPOT_COUNTRY,
+                COL_FLIGHT_SPOT_POSTCODE,
+                COL_FLIGHT_SPOT_DESCRIPTION,
+                COL_FLIGHT_SPOT_MINHEIGHT,
+                COL_FLIGHT_SPOT_WIND,
+                COL_FLIGHT_SPOT_RATING
+            };
+
+            display = new List<FlightSpotGui>();
+            foreach (FlightSpotDBEntry spot in spots) {
+                FlightSpotGui fs = new FlightSpotGui(spot);
+                display.Add(fs);
+            }
+        }
+
+        /// <summary>
+        /// create data table with flight spots
+        /// </summary>
+        /// <param name="spots"></param>
+        /// <returns></returns>
+        public static DataTable flightSpotTable(List<FlightSpotDBEntry> spots) {
             DataTable table = new DataTable();
+
             List<String> columns = new List<string>() { 
                 COL_FLIGHT_SPOT_NAME,
                 COL_FLIGHT_SPOT_COUNTRY,
@@ -108,8 +135,8 @@ namespace FlightLogGUI {
             };
             GridUtils.addColumns(table, columns);
 
-            foreach (FlightSpotEntry spot in spots) {
-               addFlightSpotRow(table, spot);
+            foreach (FlightSpotDBEntry spot in spots) {
+                addFlightSpotRow(table, spot);
             }
 
             return table;

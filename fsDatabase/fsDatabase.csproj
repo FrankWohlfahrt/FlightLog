@@ -49,9 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalInfos.cs" />
     <Compile Include="DBConvert.cs" />
     <Compile Include="FlightLogEntry.cs" />
     <Compile Include="FlightSpotEntry.cs" />
+    <Compile Include="fsDatabase.AdditionalInfos.cs" />
     <Compile Include="fsDatabase.cs" />
     <Compile Include="fsDatabase.FlightLog.cs" />
     <Compile Include="fsDatabase.FlightSpot.cs" />

@@ -40,11 +40,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxRating = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelWeatherLink = new System.Windows.Forms.Label();
+            this.textBoxAirspace = new System.Windows.Forms.TextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageSpots.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSpots)).BeginInit();
             this.panel1.SuspendLayout();
@@ -115,6 +120,13 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.dataGridViewSpots);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxAirspace);
+            this.splitContainer1.Panel2.Controls.Add(this.labelWeatherLink);
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Size = new System.Drawing.Size(869, 448);
             this.splitContainer1.SplitterDistance = 251;
             this.splitContainer1.TabIndex = 2;
@@ -130,6 +142,7 @@
             this.dataGridViewSpots.ReadOnly = true;
             this.dataGridViewSpots.Size = new System.Drawing.Size(869, 251);
             this.dataGridViewSpots.TabIndex = 0;
+            this.dataGridViewSpots.SelectionChanged += new System.EventHandler(this.dataGridViewSpots_SelectionChanged);
             // 
             // panel1
             // 
@@ -166,6 +179,43 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Bewertung";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(23, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Wetterlink";
+            // 
+            // labelWeatherLink
+            // 
+            this.labelWeatherLink.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelWeatherLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWeatherLink.Location = new System.Drawing.Point(113, 21);
+            this.labelWeatherLink.Name = "labelWeatherLink";
+            this.labelWeatherLink.Size = new System.Drawing.Size(568, 23);
+            this.labelWeatherLink.TabIndex = 1;
+            // 
+            // textBoxAirspace
+            // 
+            this.textBoxAirspace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxAirspace.Location = new System.Drawing.Point(113, 60);
+            this.textBoxAirspace.Multiline = true;
+            this.textBoxAirspace.Name = "textBoxAirspace";
+            this.textBoxAirspace.Size = new System.Drawing.Size(568, 122);
+            this.textBoxAirspace.TabIndex = 2;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(417, 55);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(425, 127);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
+            // 
             // FlightLogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,6 +233,8 @@
             this.tabControlMain.ResumeLayout(false);
             this.tabPageSpots.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSpots)).EndInit();
@@ -206,6 +258,10 @@
         private System.Windows.Forms.ComboBox comboBoxRating;
         private System.Windows.Forms.DataGridView dataGridViewSpots;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelWeatherLink;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxAirspace;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
