@@ -37,13 +37,14 @@
             this.tabPageSpots = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridViewSpots = new System.Windows.Forms.DataGridView();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonOpenWeatherUrl = new System.Windows.Forms.Button();
+            this.richTextBoxAirspaceInfo = new System.Windows.Forms.RichTextBox();
+            this.labelWeatherLink = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxRating = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.labelWeatherLink = new System.Windows.Forms.Label();
-            this.textBoxAirspace = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageSpots.SuspendLayout();
@@ -123,8 +124,9 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Panel2.Controls.Add(this.textBoxAirspace);
+            this.splitContainer1.Panel2.Controls.Add(this.buttonSave);
+            this.splitContainer1.Panel2.Controls.Add(this.buttonOpenWeatherUrl);
+            this.splitContainer1.Panel2.Controls.Add(this.richTextBoxAirspaceInfo);
             this.splitContainer1.Panel2.Controls.Add(this.labelWeatherLink);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Size = new System.Drawing.Size(869, 448);
@@ -135,14 +137,70 @@
             // 
             this.dataGridViewSpots.AllowUserToAddRows = false;
             this.dataGridViewSpots.AllowUserToDeleteRows = false;
+            this.dataGridViewSpots.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewSpots.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSpots.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewSpots.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewSpots.Location = new System.Drawing.Point(10, 9);
             this.dataGridViewSpots.Name = "dataGridViewSpots";
             this.dataGridViewSpots.ReadOnly = true;
-            this.dataGridViewSpots.Size = new System.Drawing.Size(869, 251);
+            this.dataGridViewSpots.Size = new System.Drawing.Size(844, 231);
             this.dataGridViewSpots.TabIndex = 0;
             this.dataGridViewSpots.SelectionChanged += new System.EventHandler(this.dataGridViewSpots_SelectionChanged);
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSave.Location = new System.Drawing.Point(757, 70);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(97, 23);
+            this.buttonSave.TabIndex = 5;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // buttonOpenWeatherUrl
+            // 
+            this.buttonOpenWeatherUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOpenWeatherUrl.Location = new System.Drawing.Point(757, 29);
+            this.buttonOpenWeatherUrl.Name = "buttonOpenWeatherUrl";
+            this.buttonOpenWeatherUrl.Size = new System.Drawing.Size(97, 23);
+            this.buttonOpenWeatherUrl.TabIndex = 4;
+            this.buttonOpenWeatherUrl.Text = "Open";
+            this.buttonOpenWeatherUrl.UseVisualStyleBackColor = true;
+            this.buttonOpenWeatherUrl.Click += new System.EventHandler(this.buttonOpenWeatherUrl_Click);
+            // 
+            // richTextBoxAirspaceInfo
+            // 
+            this.richTextBoxAirspaceInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBoxAirspaceInfo.Location = new System.Drawing.Point(10, 70);
+            this.richTextBoxAirspaceInfo.Name = "richTextBoxAirspaceInfo";
+            this.richTextBoxAirspaceInfo.Size = new System.Drawing.Size(724, 109);
+            this.richTextBoxAirspaceInfo.TabIndex = 3;
+            this.richTextBoxAirspaceInfo.Text = "";
+            // 
+            // labelWeatherLink
+            // 
+            this.labelWeatherLink.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelWeatherLink.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelWeatherLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWeatherLink.Location = new System.Drawing.Point(10, 29);
+            this.labelWeatherLink.Name = "labelWeatherLink";
+            this.labelWeatherLink.Size = new System.Drawing.Size(724, 23);
+            this.labelWeatherLink.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Wetterlink";
             // 
             // panel1
             // 
@@ -178,43 +236,6 @@
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Bewertung";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Wetterlink";
-            // 
-            // labelWeatherLink
-            // 
-            this.labelWeatherLink.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelWeatherLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWeatherLink.Location = new System.Drawing.Point(113, 21);
-            this.labelWeatherLink.Name = "labelWeatherLink";
-            this.labelWeatherLink.Size = new System.Drawing.Size(568, 23);
-            this.labelWeatherLink.TabIndex = 1;
-            // 
-            // textBoxAirspace
-            // 
-            this.textBoxAirspace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxAirspace.Location = new System.Drawing.Point(113, 60);
-            this.textBoxAirspace.Multiline = true;
-            this.textBoxAirspace.Name = "textBoxAirspace";
-            this.textBoxAirspace.Size = new System.Drawing.Size(568, 122);
-            this.textBoxAirspace.TabIndex = 2;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(417, 55);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(425, 127);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
             // 
             // FlightLogForm
             // 
@@ -260,8 +281,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelWeatherLink;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxAirspace;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxAirspaceInfo;
+        private System.Windows.Forms.Button buttonOpenWeatherUrl;
+        private System.Windows.Forms.Button buttonSave;
     }
 }
 

@@ -120,7 +120,11 @@ namespace Utilities.Grids {
             }
             if ((selIdx >= 0) && (selIdx < gridview.Rows.Count)) {
                 gridview.Rows[selIdx].Selected = true;
-                gridview.CurrentCell = gridview.Rows[selIdx].Cells[0];
+                if (gridview.Rows[selIdx].Cells.Count > 0) {
+                    if (gridview.Rows[selIdx].Cells[0].Visible) {
+                        gridview.CurrentCell = gridview.Rows[selIdx].Cells[0];
+                    }
+                }
             }
             gridview.ResumeLayout();
         }

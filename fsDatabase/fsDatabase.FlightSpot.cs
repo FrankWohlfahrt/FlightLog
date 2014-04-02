@@ -10,6 +10,9 @@ namespace FlightSpot.Database {
 
         private const string SELECT_FROM_FLIGHTSPOT_BY_RATING =
            "select * from FLIGHTSPOTS where RATING >= @RATING";
+        private const string UPDATE_FLIGHTSPOT_AIRSPACE_INFO =
+           "update FLIGHTSPOTS set AIRSPACE = @AIRSPACE where ID = @ID";
+
 
         /// <summary>
         /// get a flightlog entry from datareader
@@ -33,7 +36,18 @@ namespace FlightSpot.Database {
             DbParams.Add(CreateDbParameter("@RATING", DbType.Int32, Rating));
             return GetList<FlightSpotDBEntry>(out pList, SELECT_FROM_FLIGHTSPOT_BY_RATING, DbParams, convertDBDataToFlightSpot);
         }
-    
+
+        /// <summary>
+        /// update airspace information of a flightspot
+        /// </summary>
+        /// <param name="Spot"></param>
+        /// <returns></returns>
+        public int updateFlightSpotAdditionalInfo(int Id, String airspace) {
+            List<DbParameter> DbParams = new List<DbParameter>();
+            DbParams.Add(CreateDbParameter("@AIRSPACE", DbType.String, airspace));
+            DbParams.Add(CreateDbParameter("@ID", DbType.String, Id));
+            return executeDbCommand(UPDATE_FLIGHTSPOT_AIRSPACE_INFO, DbParams);
+        }
     }
 
 }

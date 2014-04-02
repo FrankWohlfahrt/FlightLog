@@ -10,6 +10,7 @@ using FlightSpot.Database;
 using System.IO;
 using Utilities.Grids;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace FlightLogGUI
 {
@@ -115,19 +116,24 @@ namespace FlightLogGUI
             var obj = dataGridViewSpots.CurrentRow.DataBoundItem;
             if (obj is FlightSpotGui) {
                 labelWeatherLink.Text = (obj as FlightSpotGui).WindFinderLink;
-                richTextBox1.Text = StripHTML((obj as FlightSpotGui).AirspaceInfo);
+                richTextBoxAirspaceInfo.Text = StripHTML((obj as FlightSpotGui).AirspaceInfo);
+            }
+        }
 
-                List<AdditionalInfos> InfoList;
-                m_fsdb.getAdditionalInfoList(out InfoList, (obj as FlightSpotGui).Hash);
-                StringBuilder sb = new StringBuilder();
-                foreach (AdditionalInfos info in InfoList) {
-                    sb.Append(info.Name);
-                    sb.Append(Environment.NewLine);
-                    sb.Append(info.Data);
-                    sb.Append(Environment.NewLine);
-                    sb.Append(Environment.NewLine);
-                }
-                textBoxAirspace.Text = sb.ToString();
+        /// <summary>
+        /// open the link
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonOpenWeatherUrl_Click(object sender, EventArgs e) {
+            Process.Start(labelWeatherLink.Text);
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e) {
+            var obj = dataGridViewSpots.CurrentRow.DataBoundItem;
+            if (obj is FlightSpotGui) {
+                (obj as FlightSpotGui).AirspaceInfo = richTextBoxAirspaceInfo.Text;
+                m_fsdb.updateFlightSpotAdditionalInfo((obj as FlightSpotGui).ID, richTextBoxAirspaceInfo.Text);
             }
         }
 
