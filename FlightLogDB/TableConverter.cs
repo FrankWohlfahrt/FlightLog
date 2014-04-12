@@ -11,6 +11,7 @@ namespace FlightLogGUI {
     static class TableConverter {
 
         private const string COL_FLIGHT_LOG_ID = "Id";
+        private const string COL_FLIGHT_LOG_DATE = "Datum";
         private const string COL_FLIGHT_LOG_GLIDER = "Fluggerät";
         private const string COL_FLIGHT_LOG_START = "Startplatz";
         private const string COL_FLIGHT_LOG_LAND = "Landeplatz";
@@ -34,7 +35,8 @@ namespace FlightLogGUI {
         private static void addFlightRow(DataTable table, FlightLogEntry flight) {
             GridUtils.addRow(
                 table, 
-                flight.Id.ToString(), 
+                flight.Id.ToString(),
+                flight.Date.ToShortDateString(),
                 flight.Glider,
                 flight.LaunchSite,
                 flight.LandingSite,
@@ -52,6 +54,7 @@ namespace FlightLogGUI {
             DataTable table = new DataTable();
             List<String> columns = new List<string>() { 
                 COL_FLIGHT_LOG_ID, 
+                COL_FLIGHT_LOG_DATE, 
                 COL_FLIGHT_LOG_GLIDER, 
                 COL_FLIGHT_LOG_START, 
                 COL_FLIGHT_LOG_LAND, 
