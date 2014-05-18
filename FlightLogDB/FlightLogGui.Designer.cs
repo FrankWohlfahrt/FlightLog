@@ -45,6 +45,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxRating = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.flügeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hinzufügenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabPageFlights = new System.Windows.Forms.TabPage();
+            this.tabControlFlights = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageSpots.SuspendLayout();
@@ -54,12 +59,15 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSpots)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tabPageFlights.SuspendLayout();
+            this.tabControlFlights.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dateiToolStripMenuItem});
+            this.dateiToolStripMenuItem,
+            this.flügeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1070, 24);
@@ -92,6 +100,7 @@
             // tabControlMain
             // 
             this.tabControlMain.Controls.Add(this.tabPageSpots);
+            this.tabControlMain.Controls.Add(this.tabPageFlights);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.Location = new System.Drawing.Point(0, 24);
             this.tabControlMain.Name = "tabControlMain";
@@ -237,6 +246,53 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Bewertung";
             // 
+            // flügeToolStripMenuItem
+            // 
+            this.flügeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hinzufügenToolStripMenuItem});
+            this.flügeToolStripMenuItem.Name = "flügeToolStripMenuItem";
+            this.flügeToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.flügeToolStripMenuItem.Text = "Flüge";
+            // 
+            // hinzufügenToolStripMenuItem
+            // 
+            this.hinzufügenToolStripMenuItem.Name = "hinzufügenToolStripMenuItem";
+            this.hinzufügenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.hinzufügenToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.hinzufügenToolStripMenuItem.Text = "hinzufügen";
+            this.hinzufügenToolStripMenuItem.Click += new System.EventHandler(this.hinzufügenToolStripMenuItem_Click);
+            // 
+            // tabPageFlights
+            // 
+            this.tabPageFlights.Controls.Add(this.tabControlFlights);
+            this.tabPageFlights.Location = new System.Drawing.Point(4, 22);
+            this.tabPageFlights.Name = "tabPageFlights";
+            this.tabPageFlights.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageFlights.Size = new System.Drawing.Size(1062, 454);
+            this.tabPageFlights.TabIndex = 1;
+            this.tabPageFlights.Text = "Flüge";
+            this.tabPageFlights.UseVisualStyleBackColor = true;
+            // 
+            // tabControlFlights
+            // 
+            this.tabControlFlights.Controls.Add(this.tabPage1);
+            this.tabControlFlights.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlFlights.Location = new System.Drawing.Point(3, 3);
+            this.tabControlFlights.Name = "tabControlFlights";
+            this.tabControlFlights.SelectedIndex = 0;
+            this.tabControlFlights.Size = new System.Drawing.Size(1056, 448);
+            this.tabControlFlights.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1048, 422);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // FlightLogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,6 +317,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSpots)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabPageFlights.ResumeLayout(false);
+            this.tabControlFlights.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,6 +342,11 @@
         private System.Windows.Forms.RichTextBox richTextBoxAirspaceInfo;
         private System.Windows.Forms.Button buttonOpenWeatherUrl;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.ToolStripMenuItem flügeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hinzufügenToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPageFlights;
+        private System.Windows.Forms.TabControl tabControlFlights;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }
 

@@ -11,6 +11,8 @@ using System.IO;
 using Utilities.Grids;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using FlightLogGUI.Dialogs;
+using Utils;
 
 namespace FlightLogGUI
 {
@@ -18,6 +20,8 @@ namespace FlightLogGUI
     {
         private const string flightlogDir = "flightlog";
         private const string flightlogDB = "flightlogDB.sqlite";
+
+        private const int USER = 1;
 
         private fsDatabase m_fsdb = null;
 
@@ -33,7 +37,7 @@ namespace FlightLogGUI
             m_fsdb = new fsDatabase(flightLogPath);
             comboBoxRating.SelectedIndex = 2;
 
-            showFlightsOfUser(1);
+            showFlightsOfUser(USER);
         }
 
         /// <summary>
@@ -52,6 +56,8 @@ namespace FlightLogGUI
         /// </summary>
         /// <param name="UserId"></param>
         private void showFlightsOfUser(int UserId) {
+            tabControlFlights.TabPages.Clear();
+
             List<FlightLogEntry> flights;
             m_fsdb.getFlightLogList(out flights, UserId);
             int max = flights.Max(f => f.Date.Year);
@@ -69,15 +75,43 @@ namespace FlightLogGUI
         /// <param name="Year"></param>
         private void createTabPageForFlightList(List<FlightLogEntry> flights, int Year) {
             TabPage page = new TabPage();
-            page.Text = Year.ToString();
+
+            Single TotalAirTime = 0;
+            foreach (FlightLogEntry fle in flights) {
+                TotalAirTime += fle.AirtimeHours;
+            }
+
+            page.Text = Year.ToString() + " / " + fsUtils.prettyPrintTime(TotalAirTime);
 
             DataGridView dgv = new DataGridView();
             dgv.Dock = DockStyle.Fill;
+            dgv.CellDoubleClick += new DataGridViewCellEventHandler(dgv_CellDoubleClick);
             page.Controls.Add(dgv);
-            tabControlMain.TabPages.Add(page);
+            tabControlFlights.TabPages.Add(page);
 
             DataTable table = TableConverter.flightLogsToDataTable(flights);
             GridUtils.updateDataSourceKeepPosition(dgv, table, null, "Kommentar");
+        }
+
+        /// <summary>
+        /// edit flight log entry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            if (sender is DataGridView) {
+                DataGridView dgv = (DataGridView)sender;
+                string idStr = dgv.CurrentRow.Cells[0].Value.ToString();
+                int id;
+                if (Int32.TryParse(idStr, out id)) {
+                    FlightLogEntry flEntry;
+                    if (m_fsdb.getFlightLogById(out flEntry, id) > 0) {
+                        EditFlightDlg dlg = new EditFlightDlg(m_fsdb, USER, flEntry);
+                        dlg.ShowDialog();
+                        showFlightsOfUser(USER);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -129,12 +163,28 @@ namespace FlightLogGUI
             Process.Start(labelWeatherLink.Text);
         }
 
+        /// <summary>
+        /// save changed additional info
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSave_Click(object sender, EventArgs e) {
             var obj = dataGridViewSpots.CurrentRow.DataBoundItem;
             if (obj is FlightSpotGui) {
                 (obj as FlightSpotGui).AirspaceInfo = richTextBoxAirspaceInfo.Text;
                 m_fsdb.updateFlightSpotAdditionalInfo((obj as FlightSpotGui).ID, richTextBoxAirspaceInfo.Text);
             }
+        }
+
+        /// <summary>
+        /// add a flight to the log
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void hinzufügenToolStripMenuItem_Click(object sender, EventArgs e) {
+            EditFlightDlg dlg = new EditFlightDlg(m_fsdb, USER);
+            dlg.ShowDialog();
+            showFlightsOfUser(USER);
         }
 
     }
