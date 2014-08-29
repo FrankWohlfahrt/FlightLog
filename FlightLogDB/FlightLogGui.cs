@@ -174,6 +174,7 @@ namespace FlightLogGUI
                 (obj as FlightSpotGui).WindFinderLink = textboxWeatherLink.Text;
                 (obj as FlightSpotGui).AirspaceInfo = richTextBoxAirspaceInfo.Text;
                 m_fsdb.updateFlightSpotAdditionalInfo((obj as FlightSpotGui).ID, richTextBoxAirspaceInfo.Text);
+                m_fsdb.updateFlightSpotWeatherLink   ((obj as FlightSpotGui).ID, textboxWeatherLink.Text);
             }
         }
 

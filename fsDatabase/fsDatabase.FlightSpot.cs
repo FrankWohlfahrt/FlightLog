@@ -12,7 +12,8 @@ namespace FlightSpot.Database {
            "select * from FLIGHTSPOTS where RATING >= @RATING";
         private const string UPDATE_FLIGHTSPOT_AIRSPACE_INFO =
            "update FLIGHTSPOTS set AIRSPACE = @AIRSPACE where ID = @ID";
-
+        private const string UPDATE_FLIGHTSPOT_WEATHERLINK =
+           "update FLIGHTSPOTS set WINDFINDERLINK = @WINDFINDERLINK where ID = @ID";
 
         /// <summary>
         /// get a flightlog entry from datareader
@@ -48,6 +49,19 @@ namespace FlightSpot.Database {
             DbParams.Add(CreateDbParameter("@ID", DbType.String, Id));
             return executeDbCommand(UPDATE_FLIGHTSPOT_AIRSPACE_INFO, DbParams);
         }
+
+        /// <summary>
+        /// update airspace information of a flightspot
+        /// </summary>
+        /// <param name="Spot"></param>
+        /// <returns></returns>
+        public int updateFlightSpotWeatherLink(int Id, String link) {
+            List<DbParameter> DbParams = new List<DbParameter>();
+            DbParams.Add(CreateDbParameter("@WINDFINDERLINK", DbType.String, link));
+            DbParams.Add(CreateDbParameter("@ID", DbType.String, Id));
+            return executeDbCommand(UPDATE_FLIGHTSPOT_WEATHERLINK, DbParams);
+        }
+
     }
 
 }
