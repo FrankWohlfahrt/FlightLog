@@ -32,6 +32,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flügeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hinzufügenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageSpots = new System.Windows.Forms.TabPage();
@@ -40,16 +42,14 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonOpenWeatherUrl = new System.Windows.Forms.Button();
             this.richTextBoxAirspaceInfo = new System.Windows.Forms.RichTextBox();
-            this.labelWeatherLink = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxRating = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.flügeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hinzufügenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPageFlights = new System.Windows.Forms.TabPage();
             this.tabControlFlights = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textboxWeatherLink = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageSpots.SuspendLayout();
@@ -88,6 +88,22 @@
             this.beendenToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
             this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
+            // 
+            // flügeToolStripMenuItem
+            // 
+            this.flügeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hinzufügenToolStripMenuItem});
+            this.flügeToolStripMenuItem.Name = "flügeToolStripMenuItem";
+            this.flügeToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.flügeToolStripMenuItem.Text = "Flüge";
+            // 
+            // hinzufügenToolStripMenuItem
+            // 
+            this.hinzufügenToolStripMenuItem.Name = "hinzufügenToolStripMenuItem";
+            this.hinzufügenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.hinzufügenToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.hinzufügenToolStripMenuItem.Text = "hinzufügen";
+            this.hinzufügenToolStripMenuItem.Click += new System.EventHandler(this.hinzufügenToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -133,10 +149,10 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.textboxWeatherLink);
             this.splitContainer1.Panel2.Controls.Add(this.buttonSave);
             this.splitContainer1.Panel2.Controls.Add(this.buttonOpenWeatherUrl);
             this.splitContainer1.Panel2.Controls.Add(this.richTextBoxAirspaceInfo);
-            this.splitContainer1.Panel2.Controls.Add(this.labelWeatherLink);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Size = new System.Drawing.Size(869, 448);
             this.splitContainer1.SplitterDistance = 251;
@@ -190,17 +206,6 @@
             this.richTextBoxAirspaceInfo.TabIndex = 3;
             this.richTextBoxAirspaceInfo.Text = "";
             // 
-            // labelWeatherLink
-            // 
-            this.labelWeatherLink.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelWeatherLink.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelWeatherLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWeatherLink.Location = new System.Drawing.Point(10, 29);
-            this.labelWeatherLink.Name = "labelWeatherLink";
-            this.labelWeatherLink.Size = new System.Drawing.Size(724, 23);
-            this.labelWeatherLink.TabIndex = 1;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -246,22 +251,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Bewertung";
             // 
-            // flügeToolStripMenuItem
-            // 
-            this.flügeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hinzufügenToolStripMenuItem});
-            this.flügeToolStripMenuItem.Name = "flügeToolStripMenuItem";
-            this.flügeToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
-            this.flügeToolStripMenuItem.Text = "Flüge";
-            // 
-            // hinzufügenToolStripMenuItem
-            // 
-            this.hinzufügenToolStripMenuItem.Name = "hinzufügenToolStripMenuItem";
-            this.hinzufügenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.hinzufügenToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.hinzufügenToolStripMenuItem.Text = "hinzufügen";
-            this.hinzufügenToolStripMenuItem.Click += new System.EventHandler(this.hinzufügenToolStripMenuItem_Click);
-            // 
             // tabPageFlights
             // 
             this.tabPageFlights.Controls.Add(this.tabControlFlights);
@@ -292,6 +281,13 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textboxWeatherLink
+            // 
+            this.textboxWeatherLink.Location = new System.Drawing.Point(10, 34);
+            this.textboxWeatherLink.Name = "textboxWeatherLink";
+            this.textboxWeatherLink.Size = new System.Drawing.Size(724, 20);
+            this.textboxWeatherLink.TabIndex = 6;
             // 
             // FlightLogForm
             // 
@@ -337,7 +333,6 @@
         private System.Windows.Forms.ComboBox comboBoxRating;
         private System.Windows.Forms.DataGridView dataGridViewSpots;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label labelWeatherLink;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox richTextBoxAirspaceInfo;
         private System.Windows.Forms.Button buttonOpenWeatherUrl;
@@ -347,6 +342,7 @@
         private System.Windows.Forms.TabPage tabPageFlights;
         private System.Windows.Forms.TabControl tabControlFlights;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox textboxWeatherLink;
     }
 }
 

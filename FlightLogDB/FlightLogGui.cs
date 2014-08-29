@@ -149,7 +149,7 @@ namespace FlightLogGUI
         private void dataGridViewSpots_SelectionChanged(object sender, EventArgs e) {
             var obj = dataGridViewSpots.CurrentRow.DataBoundItem;
             if (obj is FlightSpotGui) {
-                labelWeatherLink.Text = (obj as FlightSpotGui).WindFinderLink;
+                textboxWeatherLink.Text = (obj as FlightSpotGui).WindFinderLink;
                 richTextBoxAirspaceInfo.Text = StripHTML((obj as FlightSpotGui).AirspaceInfo);
             }
         }
@@ -160,7 +160,7 @@ namespace FlightLogGUI
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonOpenWeatherUrl_Click(object sender, EventArgs e) {
-            Process.Start(labelWeatherLink.Text);
+            Process.Start(textboxWeatherLink.Text);
         }
 
         /// <summary>
@@ -171,6 +171,7 @@ namespace FlightLogGUI
         private void buttonSave_Click(object sender, EventArgs e) {
             var obj = dataGridViewSpots.CurrentRow.DataBoundItem;
             if (obj is FlightSpotGui) {
+                (obj as FlightSpotGui).WindFinderLink = textboxWeatherLink.Text;
                 (obj as FlightSpotGui).AirspaceInfo = richTextBoxAirspaceInfo.Text;
                 m_fsdb.updateFlightSpotAdditionalInfo((obj as FlightSpotGui).ID, richTextBoxAirspaceInfo.Text);
             }
