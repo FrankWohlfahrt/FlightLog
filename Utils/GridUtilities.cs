@@ -141,7 +141,7 @@ namespace Utilities.Grids {
         /// <param name="gridview"></param>
         /// <param name="list"></param>
         /// <param name="AutoSizeColumnIdx"></param>
-        public static void updateDataSourceKeepPosition<T>(DataGridView gridview, List<T> list, int iRowHeight = 0) {
+        public static void updateDataSourceKeepPosition<T>(DataGridView gridview, List<T> list) {
             string AutoSizeColumnName = string.Empty;
             Type type = typeof(T);
             MemberInfo[] members = type.GetMembers();
@@ -158,7 +158,7 @@ namespace Utilities.Grids {
             }
 
             updateDataSource(gridview, list, null);
-            InitializeDataGridView(gridview, AutoSizeColumnName, iRowHeight);
+            InitializeDataGridView(gridview, AutoSizeColumnName, 0);
         }
 
         /// <summary>

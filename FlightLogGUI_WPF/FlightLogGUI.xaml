@@ -1,10 +1,11 @@
-﻿<Window x:Class="FlightLogGUI_WPF.FlightLogGui"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:FlightLogGUI_WPF" x:Class="FlightLogGUI_WPF.FlightLogGui"
         Title="FlightLog" Height="574" Width="937">
     <Grid Background="#FFD4D0C8">
 
-        <Menu HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top">
+        <Menu HorizontalAlignment="Left" x:Name="menu1" VerticalAlignment="Top">
             <MenuItem Header="Datei">
                 <MenuItem Header="Beenden" DataContext="{Binding}" Click="MenuItem_Click" />
             </MenuItem>
@@ -12,11 +13,15 @@
                 <MenuItem Header="Hinzufügen" />
             </MenuItem>
         </Menu>
-        <TabControl HorizontalAlignment="Stretch" Margin="0,24,0,0" Name="tabControl1" VerticalAlignment="Stretch" Grid.ColumnSpan="2">
-            <TabItem Header="Fluggelände" Name="tabItemSpots">
-                <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding}" Name="dataGridFlightSpots" VerticalAlignment="Stretch" AutoGeneratingColumn="dataGridFlightSpots_AutoGeneratingColumn" />
+        <TabControl HorizontalAlignment="Stretch" Margin="0,24,0,0" x:Name="tabControl1" VerticalAlignment="Stretch" Grid.ColumnSpan="2">
+            <TabItem Header="Fluggelände" x:Name="tabItemSpots">
+                <DataGrid ItemsSource="{Binding}" x:Name="dataGridFlightSpots" VerticalAlignment="Stretch" AlternatingRowBackground="#FFC7C7C7" AlternationCount="1" AreRowDetailsFrozen="False" FontFamily="Comic Sans MS" FontSize="12" >
+                    <DataGrid.DataContext>
+                        <local:FlightSpotDisplay/>
+                    </DataGrid.DataContext>
+                </DataGrid>
             </TabItem>
-            <TabItem Header="Flüge" Name="tabItemFlights">
+            <TabItem Header="Flüge" x:Name="tabItemFlights">
                 <Grid />
             </TabItem>
         </TabControl>

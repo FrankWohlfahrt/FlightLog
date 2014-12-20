@@ -61,16 +61,15 @@ namespace FlightLogGUI_WPF {
         /// </summary>
         /// <param name="Rating"></param>
         private void showFlightSpots(int Rating) {
-            List<FlightSpotDBEntry> spots;
-            m_fsdb.getFlightSpotList(out spots, Rating);
-            dataGridFlightSpots.ItemsSource = spots;
+            FlightSpotView fsview = new FlightSpotView(m_fsdb);
+            dataGridFlightSpots.ItemsSource = fsview.getData(Rating);
         }
 
-        private void dataGridFlightSpots_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e) {
-            if (((PropertyDescriptor)e.PropertyDescriptor).IsBrowsable == false)
-                e.Cancel = true;
-        }
-
+        /// <summary>
+        /// close application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
