@@ -3,86 +3,113 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Common;
+using System.ComponentModel;
 
 namespace FlightSpot.Database {
-
-    /// <summary>
-    /// class for display in GUI
-    /// </summary>
-    public class FlightSpotGui {
-        public int ID { get; set; }
-
-        public String Name { get; set; }
-        public String Land { get; set; }
-        public String MinHeight { get; set; }
-        public String PostCode { get; set; }
-        public String Beschreibung { get; set; }
-        public String Windrichtung { get; set; }
-        public String Bewertung { get; set; }
-
-        public String WindFinderLink { get; set; }
-        public int Rating { get; set; }
-        public String AirspaceInfo { get; set; }
-        public int Hash { get; set; }
-
-        public FlightSpotGui(FlightSpotDBEntry fsEntry) {
-            this.ID = fsEntry.ID;
-            this.Name = fsEntry.Name;
-            this.Land = fsEntry.Coordinates;
-            this.MinHeight = fsEntry.Height.ToString();
-            this.PostCode = fsEntry.City;
-            this.Beschreibung = fsEntry.Description;
-            this.Windrichtung = fsEntry.WindDirection;
-
-            String rating = String.Empty;
-            for (int i = 1; i <= fsEntry.Rating; i++) {
-                rating += "*";
-            }
-            this.Bewertung = rating;
-            this.WindFinderLink = fsEntry.WindFinderLink;
-            this.Rating = fsEntry.Rating;
-            this.AirspaceInfo = fsEntry.airspace;
-            this.Hash = fsEntry.Hash;
-        }
-    }
 
     /// <summary>
     /// class for database access
     /// </summary>
     public class FlightSpotDBEntry {
+        [Browsable(false)]
         public int ID { get; set; }
+
+        [Browsable(false)]
         public int Hash { get; set; }
 
+        [DisplayName("Name")]
+        [Browsable(true)]
         public String Name { get; set; }
+
+        [DisplayName("Land")]
+        [Browsable(true)]
         public String Country { get; set; }
+
+        [DisplayName("PostCode")]
+        [Browsable(true)]
         public String City { get; set; }
+
+        [DisplayName("Höhe")]
+        [Browsable(true)]
         public String Height { get; set; }
+
+        [DisplayName("Beschreibung")]
+        [Browsable(true)]
+        [AutoSizeColumn]
         public String Description { get; set; }
+        
+        [Browsable(false)]
         public String Coordinates { get; set; }
+
+        [Browsable(false)]
         public String WindFinderLink { get; set; }
+        
+        [DisplayName("Windrichtung")]
+        [Browsable(true)]
         public String WindDirection { get; set; }
 
+        [DisplayName("Bewertung")]
+        [Browsable(true)]
         public int Rating { get; set; }
 
+        [Browsable(false)]
         public String SupportsHangglider { get; set; }
+
+        [Browsable(false)]
         public String SupportsParaglider { get; set; }
+        
+        [Browsable(false)]
         public String Importfile { get; set; }
+        
+        [Browsable(false)]
         public int wind_n { get; set; }
+        
+        [Browsable(false)]
         public int wind_nne { get; set; }
+        
+        [Browsable(false)]
         public int wind_ne { get; set; }
+        
+        [Browsable(false)]
         public int wind_ene { get; set; }
+        
+        [Browsable(false)]
         public int wind_e { get; set; }
+        
+        [Browsable(false)]
         public int wind_ese { get; set; }
+        
+        [Browsable(false)]
         public int wind_se { get; set; }
+        
+        [Browsable(false)]
         public int wind_sse { get; set; }
+        
+        [Browsable(false)]
         public int wind_s { get; set; }
+        
+        [Browsable(false)]
         public int wind_ssw { get; set; }
+        
+        [Browsable(false)]
         public int wind_sw { get; set; }
+        
+        [Browsable(false)]
         public int wind_wsw { get; set; }
+        
+        [Browsable(false)]
         public int wind_w { get; set; }
+        
+        [Browsable(false)]
         public int wind_wnw { get; set; }
+        
+        [Browsable(false)]
         public int wind_nw { get; set; }
+        
+        [Browsable(false)]
         public int wind_nnw { get; set; }
+
+        [Browsable(false)]
         public String airspace { get; set; }
 
         /// <summary>

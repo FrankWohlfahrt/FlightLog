@@ -89,8 +89,7 @@ namespace FlightLogGUI
             page.Controls.Add(dgv);
             tabControlFlights.TabPages.Add(page);
 
-            DataTable table = TableConverter.flightLogsToDataTable(flights);
-            GridUtils.updateDataSourceKeepPosition(dgv, table, null, "Kommentar");
+            GridUtils.updateDataSourceKeepPosition(dgv, flights);
         }
 
         /// <summary>
@@ -121,10 +120,7 @@ namespace FlightLogGUI
         private void showFlightSpots(int Rating) {
             List<FlightSpotDBEntry> spots;
             m_fsdb.getFlightSpotList(out spots, Rating);
-            List<String> visibleColumns;
-            List<FlightSpotGui> display;
-            TableConverter.flightSpotTable(spots, out visibleColumns, out display);
-            GridUtils.updateDataSourceKeepPosition(dataGridViewSpots, display, visibleColumns, "Name");
+            GridUtils.updateDataSourceKeepPosition(dataGridViewSpots, spots);
         }
 
         /// <summary>
@@ -148,9 +144,9 @@ namespace FlightLogGUI
         /// <param name="e"></param>
         private void dataGridViewSpots_SelectionChanged(object sender, EventArgs e) {
             var obj = dataGridViewSpots.CurrentRow.DataBoundItem;
-            if (obj is FlightSpotGui) {
-                textboxWeatherLink.Text = (obj as FlightSpotGui).WindFinderLink;
-                richTextBoxAirspaceInfo.Text = StripHTML((obj as FlightSpotGui).AirspaceInfo);
+            if (obj is FlightSpotDBEntry) {
+                textboxWeatherLink.Text = (obj as FlightSpotDBEntry).WindFinderLink;
+                richTextBoxAirspaceInfo.Text = StripHTML((obj as FlightSpotDBEntry).airspace);
             }
         }
 
@@ -170,11 +166,11 @@ namespace FlightLogGUI
         /// <param name="e"></param>
         private void buttonSave_Click(object sender, EventArgs e) {
             var obj = dataGridViewSpots.CurrentRow.DataBoundItem;
-            if (obj is FlightSpotGui) {
-                (obj as FlightSpotGui).WindFinderLink = textboxWeatherLink.Text;
-                (obj as FlightSpotGui).AirspaceInfo = richTextBoxAirspaceInfo.Text;
-                m_fsdb.updateFlightSpotAdditionalInfo((obj as FlightSpotGui).ID, richTextBoxAirspaceInfo.Text);
-                m_fsdb.updateFlightSpotWeatherLink   ((obj as FlightSpotGui).ID, textboxWeatherLink.Text);
+            if (obj is FlightSpotDBEntry) {
+                (obj as FlightSpotDBEntry).WindFinderLink = textboxWeatherLink.Text;
+                (obj as FlightSpotDBEntry).airspace = richTextBoxAirspaceInfo.Text;
+                m_fsdb.updateFlightSpotAdditionalInfo((obj as FlightSpotDBEntry).ID, richTextBoxAirspaceInfo.Text);
+                m_fsdb.updateFlightSpotWeatherLink((obj as FlightSpotDBEntry).ID, textboxWeatherLink.Text);
             }
         }
 

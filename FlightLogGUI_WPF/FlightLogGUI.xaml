@@ -1,0 +1,24 @@
+﻿<Window x:Class="FlightLogGUI_WPF.FlightLogGui"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FlightLog" Height="574" Width="937">
+    <Grid Background="#FFD4D0C8">
+
+        <Menu HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top">
+            <MenuItem Header="Datei">
+                <MenuItem Header="Beenden" DataContext="{Binding}" Click="MenuItem_Click" />
+            </MenuItem>
+            <MenuItem Header="Flüge">
+                <MenuItem Header="Hinzufügen" />
+            </MenuItem>
+        </Menu>
+        <TabControl HorizontalAlignment="Stretch" Margin="0,24,0,0" Name="tabControl1" VerticalAlignment="Stretch" Grid.ColumnSpan="2">
+            <TabItem Header="Fluggelände" Name="tabItemSpots">
+                <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding}" Name="dataGridFlightSpots" VerticalAlignment="Stretch" AutoGeneratingColumn="dataGridFlightSpots_AutoGeneratingColumn" />
+            </TabItem>
+            <TabItem Header="Flüge" Name="tabItemFlights">
+                <Grid />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

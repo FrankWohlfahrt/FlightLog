@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
+using System.Reflection;
+using FlightSpot.Database;
 
 namespace Utilities.Grids {
 
@@ -90,7 +92,7 @@ namespace Utilities.Grids {
         /// <param name="gridview"></param>
         /// <param name="AutoSizeColumnName"></param>
         /// <param name="iRowHeight"></param>
-        public static void InitialiseDataGridView(DataGridView gridview, String AutoSizeColumnName, int iRowHeight = 0) {
+        public static void InitializeDataGridView(DataGridView gridview, String AutoSizeColumnName, int iRowHeight = 0) {
             int idx = getIndexOfColumnName(gridview, AutoSizeColumnName);
             InitialiseDataGridView(gridview, idx, iRowHeight);
         }
@@ -131,27 +133,34 @@ namespace Utilities.Grids {
 
         /// <summary>
         /// update the datasource of a grid and try to keep the marked line and scrolling position
+        /// tag elements with following attributes to control appearance:
+        ///         [DisplayName("Anzeigename")]
+        ///         [Browsable(true)]
+        ///         [AutoSizeColumn()]
         /// </summary>
         /// <param name="gridview"></param>
         /// <param name="list"></param>
-        /// <param name="visibleColumns"></param>
-        /// <param name="AutoSizeColumnName"></param>
-        public static void updateDataSourceKeepPosition(DataGridView gridview, object list, List<String> visibleColumns = null, String AutoSizeColumnName = "", int iRowHeight = 0) {
-            updateDataSource(gridview, list, visibleColumns);
-            int idx = getIndexOfColumnName(gridview, AutoSizeColumnName);
-            InitialiseDataGridView(gridview, idx, iRowHeight);
+        /// <param name="AutoSizeColumnIdx"></param>
+        public static void updateDataSourceKeepPosition<T>(DataGridView gridview, List<T> list, int iRowHeight = 0) {
+            string AutoSizeColumnName = string.Empty;
+            Type type = typeof(T);
+            MemberInfo[] members = type.GetMembers();
+            foreach (MemberInfo m in members) {
+                object[] attribs = m.GetCustomAttributes(true);
+                foreach (Attribute attr in attribs) {
+                    if (attr is AutoSizeColumn) {
+                        AutoSizeColumnName = m.Name;
+                        break;
+                    }
+                }
+
+                if (AutoSizeColumnName.Length > 0) break;
+            }
+
+            updateDataSource(gridview, list, null);
+            InitializeDataGridView(gridview, AutoSizeColumnName, iRowHeight);
         }
 
-        /// <summary>
-        /// update the datasource of a grid and try to keep the marked line and scrolling position
-        /// </summary>
-        /// <param name="gridview"></param>
-        /// <param name="source"></param>
-        public static void updateDataSourceKeepPosition(DataGridView gridview, object list, List<String> visibleColumns = null, int AutoSizeColumnIdx = -1, int iRowHeight = 0) {
-            updateDataSource(gridview, list, visibleColumns);
-            InitialiseDataGridView(gridview, AutoSizeColumnIdx, iRowHeight);
-        }
-  
         /// <summary>
         /// init a grid
         /// </summary>
