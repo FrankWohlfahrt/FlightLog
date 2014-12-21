@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using FlightSpot.Database;
 using Utilities.Grids;
 using System.ComponentModel;
+using Utils;
 
 namespace FlightLogGUI_WPF {
     /// <summary>
@@ -35,26 +36,85 @@ namespace FlightLogGUI_WPF {
             String flightLogPath = System.IO.Path.Combine(userpath, flightlogDir, flightlogDB);
             m_fsdb = new fsDatabase(flightLogPath);
 
-            //showFlightsOfUser(USER);
+            showFlightsOfUser(USER);
             showFlightSpots(2);
+        }
+
+        /// <summary>
+        /// close application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuItem_Click(object sender, RoutedEventArgs e) {
+            this.Close();
         }
 
         /// <summary>
         /// show all flights of a user
         /// </summary>
         /// <param name="UserId"></param>
-        //private void showFlightsOfUser(int UserId) {
-        //    tabControlFlights.TabPages.Clear();
+        private void showFlightsOfUser(int UserId) {
+            tabControlFlights.Items.Clear();
 
-        //    List<FlightLogEntry> flights;
-        //    m_fsdb.getFlightLogList(out flights, UserId);
-        //    int max = flights.Max(f => f.Date.Year);
-        //    int min = flights.Min(f => f.Date.Year);
+            List<FlightLogEntry> flights;
+            m_fsdb.getFlightLogList(out flights, UserId);
+            int max = flights.Max(f => f.Date.Year);
+            int min = flights.Min(f => f.Date.Year);
 
-        //    for (int i = max; i != min; i--) {
-        //        createTabPageForFlightList(flights.FindAll(fl => fl.Date.Year == i), i);
-        //    }
-        //}
+            for (int i = max; i != min; i--) {
+                createTabPageForFlightList(flights.FindAll(fl => fl.Date.Year == i), i);
+            }
+        }
+
+        /// <summary>
+        /// create a new tab and populate it with the flights of a year
+        /// </summary>
+        /// <param name="flights"></param>
+        /// <param name="Year"></param>
+        private void createTabPageForFlightList(List<FlightLogEntry> flights, int Year) {
+            Single TotalAirTime = 0;
+            foreach (FlightLogEntry fle in flights) {
+                TotalAirTime += fle.AirtimeHours;
+            }
+
+            TabItem page = new TabItem();
+            page.Header = Year.ToString() + " / " + fsUtils.prettyPrintTime(TotalAirTime);
+
+            DataGrid grid = new DataGrid();
+            grid.HorizontalAlignment = HorizontalAlignment.Stretch;
+            grid.VerticalAlignment = VerticalAlignment.Stretch;
+            grid.MouseDoubleClick += grid_MouseDoubleClick;
+            grid.AutoGeneratingColumn += grid_AutoGeneratingColumn;
+            page.Content = grid;
+
+            tabControlFlights.Items.Add(page);
+
+            grid.ItemsSource = flights;
+        }
+
+        /// <summary>
+        /// change column properties like
+        /// - Name
+        /// - AutoSize 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void grid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e) {
+            PropertyDescriptor prop = (PropertyDescriptor)e.PropertyDescriptor;
+            e.Column.Header = prop.DisplayName;
+            AutoSizeColumn attrib = new AutoSizeColumn();
+            if (prop.Attributes.Contains(attrib)) {
+                e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
+        }
+
+        /// <summary>
+        /// handle mouse click into flight datagrids
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void grid_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
+        }
 
         /// <summary>
         /// populate grid with flightspots
@@ -66,12 +126,19 @@ namespace FlightLogGUI_WPF {
         }
 
         /// <summary>
-        /// close application
+        /// change column properties like
+        /// - Name
+        /// - AutoSize 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MenuItem_Click(object sender, RoutedEventArgs e) {
-            this.Close();
+        private void dataGridFlightSpots_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e) {
+            PropertyDescriptor prop = (PropertyDescriptor)e.PropertyDescriptor;
+            e.Column.Header = prop.DisplayName;
+            AutoSizeColumn attrib = new AutoSizeColumn();
+            if (prop.Attributes.Contains(attrib)) {
+                e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightLogGUI", "FlightLogDB\FlightLogGUI.csproj", "{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fsDatabase", "fsDatabase\fsDatabase.csproj", "{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}"
@@ -24,7 +24,8 @@ Global
 		{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}.Debug|x86.ActiveCfg = Debug|x86
 		{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}.Debug|x86.Build.0 = Debug|x86
-		{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}.Release|Any CPU.ActiveCfg = Release|x86
+		{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}.Release|Mixed Platforms.Build.0 = Release|x86
 		{6EA4F8F8-E3A7-4DBE-9364-A54B78016AA0}.Release|x86.ActiveCfg = Release|x86
@@ -33,28 +34,33 @@ Global
 		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Debug|x86.ActiveCfg = Debug|x86
+		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Debug|x86.Build.0 = Debug|x86
 		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Release|x86.ActiveCfg = Release|Any CPU
+		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Release|x86.ActiveCfg = Release|x86
+		{65DABB2B-DAD8-4A44-BD55-5E545B3CC292}.Release|x86.Build.0 = Release|x86
 		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Debug|x86.ActiveCfg = Debug|x86
+		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Debug|x86.Build.0 = Debug|x86
 		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Release|x86.ActiveCfg = Release|Any CPU
+		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Release|x86.ActiveCfg = Release|x86
+		{55581E49-78F0-4DBB-B41F-6AB7D25CB18F}.Release|x86.Build.0 = Release|x86
 		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Debug|x86.ActiveCfg = Debug|x86
 		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Debug|x86.Build.0 = Debug|x86
-		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Release|Any CPU.ActiveCfg = Release|x86
+		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Release|Mixed Platforms.Build.0 = Release|x86
 		{B27FAEF9-6ED1-4E9A-8120-6725BD9E19E2}.Release|x86.ActiveCfg = Release|x86

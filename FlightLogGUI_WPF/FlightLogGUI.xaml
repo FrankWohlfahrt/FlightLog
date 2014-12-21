@@ -2,27 +2,24 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:FlightLogGUI_WPF" x:Class="FlightLogGUI_WPF.FlightLogGui"
-        Title="FlightLog" Height="574" Width="937">
+        Title="FlightLog" Height="574" Width="937" FontFamily="Comic Sans MS">
     <Grid Background="#FFD4D0C8">
 
         <Menu HorizontalAlignment="Left" x:Name="menu1" VerticalAlignment="Top">
-            <MenuItem Header="Datei">
+            <MenuItem Header="Datei" FontFamily="Comic Sans MS">
                 <MenuItem Header="Beenden" DataContext="{Binding}" Click="MenuItem_Click" />
             </MenuItem>
-            <MenuItem Header="Flüge">
+            <MenuItem Header="Flüge" FontFamily="Comic Sans MS">
                 <MenuItem Header="Hinzufügen" />
             </MenuItem>
         </Menu>
         <TabControl HorizontalAlignment="Stretch" Margin="0,24,0,0" x:Name="tabControl1" VerticalAlignment="Stretch" Grid.ColumnSpan="2">
             <TabItem Header="Fluggelände" x:Name="tabItemSpots">
-                <DataGrid ItemsSource="{Binding}" x:Name="dataGridFlightSpots" VerticalAlignment="Stretch" AlternatingRowBackground="#FFC7C7C7" AlternationCount="1" AreRowDetailsFrozen="False" FontFamily="Comic Sans MS" FontSize="12" >
-                    <DataGrid.DataContext>
-                        <local:FlightSpotDisplay/>
-                    </DataGrid.DataContext>
-                </DataGrid>
+                <DataGrid ItemsSource="{Binding}" x:Name="dataGridFlightSpots" VerticalAlignment="Stretch" AlternatingRowBackground="#FFC7C7C7" AlternationCount="1" AreRowDetailsFrozen="False" FontFamily="Comic Sans MS" FontSize="12" AutoGeneratingColumn="dataGridFlightSpots_AutoGeneratingColumn" />
             </TabItem>
             <TabItem Header="Flüge" x:Name="tabItemFlights">
-                <Grid />
+                <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="tabControlFlights" >
+                </TabControl>
             </TabItem>
         </TabControl>
     </Grid>

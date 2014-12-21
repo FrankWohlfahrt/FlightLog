@@ -13,16 +13,17 @@ namespace FlightLogGUI_WPF {
         [DisplayName("Name")]
         public String Name { get; set; }
 
+        [DisplayName("Ort")]
+        public String City { get; set; }
+
         [DisplayName("Land")]
         public String Country { get; set; }
-
-        [DisplayName("PostCode")]
-        public String City { get; set; }
 
         [DisplayName("Höhe")]
         public String Height { get; set; }
 
         [DisplayName("Beschreibung")]
+        [AutoSizeColumn]
         public String Description { get; set; }
 
         [DisplayName("Windrichtung")]
@@ -56,8 +57,8 @@ namespace FlightLogGUI_WPF {
             foreach (FlightSpotDBEntry db in spots) {
                 FlightSpotDisplay display = new FlightSpotDisplay();
                 display.Name = db.Name;
-                display.Country = db.Name;
-                display.City = db.City;
+                display.City = db.Name;
+                display.Country = db.City;
                 display.Height = db.Height;
                 display.Description = db.Description;
                 display.WindDirection = db.WindDirection;
