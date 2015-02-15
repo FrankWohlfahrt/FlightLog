@@ -15,6 +15,7 @@ using FlightSpot.Database;
 using Utilities.Grids;
 using System.ComponentModel;
 using Utils;
+using FlightLogGUI_WPF.Dialogs;
 
 namespace FlightLogGUI_WPF {
     /// <summary>
@@ -45,7 +46,7 @@ namespace FlightLogGUI_WPF {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MenuItem_Click(object sender, RoutedEventArgs e) {
+        private void MenuItemClose_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
 
@@ -76,7 +77,7 @@ namespace FlightLogGUI_WPF {
             foreach (FlightLogEntry fle in flights) {
                 TotalAirTime += fle.AirtimeHours;
             }
-
+            
             TabItem page = new TabItem();
             page.Header = Year.ToString() + " / " + fsUtils.prettyPrintTime(TotalAirTime);
 
@@ -85,11 +86,47 @@ namespace FlightLogGUI_WPF {
             grid.VerticalAlignment = VerticalAlignment.Stretch;
             grid.MouseDoubleClick += grid_MouseDoubleClick;
             grid.AutoGeneratingColumn += grid_AutoGeneratingColumn;
+            SolidColorBrush brush = new SolidColorBrush(Colors.LightBlue);
+            grid.AlternatingRowBackground = brush;
+            grid.AlternationCount = 2;
+            grid.IsReadOnly = true;
+            grid.MouseDoubleClick += new MouseButtonEventHandler(dgv_CellDoubleClick);
             page.Content = grid;
 
             tabControlFlights.Items.Add(page);
+            grid.ItemsSource = FlightLogView.getData(flights);
+        }
 
-            grid.ItemsSource = flights;
+        /// <summary>
+        /// edit flight log entry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void dgv_CellDoubleClick(object sender, MouseButtonEventArgs e) {
+            DependencyObject dep = (DependencyObject)e.OriginalSource;
+
+            while ((dep != null) && !(dep is DataGridRow)) {
+                dep = VisualTreeHelper.GetParent(dep);
+            }
+
+            if (dep == null)
+                return;
+
+            if (dep is DataGridRow) {
+                DataGridRow dataGridRow = dep as DataGridRow;
+
+                if (dataGridRow.IsSelected) {
+                    if (dataGridRow.Item is FlightLogDisplay) {
+                        int id = ((FlightLogDisplay)dataGridRow.Item).Id;
+                            FlightLogEntry flEntry;
+                            if (m_fsdb.getFlightLogById(out flEntry, id) > 0) {
+                                EditFlightDlg dlg = new EditFlightDlg(m_fsdb, USER, flEntry);
+                                dlg.ShowDialog();
+                                showFlightsOfUser(USER);
+                            }
+                    }
+                }
+            }            
         }
 
         /// <summary>
@@ -139,6 +176,20 @@ namespace FlightLogGUI_WPF {
             if (prop.Attributes.Contains(attrib)) {
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
+        }
+
+        /// <summary>
+        /// add a new flight
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuItemAddFlight_Click(object sender, RoutedEventArgs e) {
+            EditFlightDlg dlg = new EditFlightDlg(m_fsdb, USER);
+            dlg.ShowDialog();
+        }
+
+        private void tabControl1_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
         }
     }
 }

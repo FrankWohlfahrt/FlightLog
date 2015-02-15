@@ -3,24 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:FlightLogGUI_WPF" x:Class="FlightLogGUI_WPF.FlightLogGui"
         Title="FlightLog" Height="574" Width="937" FontFamily="Comic Sans MS">
-    <Grid Background="#FFD4D0C8">
+    <Menu HorizontalAlignment="Left" x:Name="menu1" VerticalAlignment="Top">
+        <MenuItem Header="Datei" FontFamily="Comic Sans MS">
+            <MenuItem Header="Beenden" Click="MenuItemClose_Click" />
+        </MenuItem>
+        <MenuItem Header="Flüge" FontFamily="Comic Sans MS">
+            <MenuItem Header="Hinzufügen" Click="MenuItemAddFlight_Click"/>
+        </MenuItem>
+        <Grid Background="#FFD4D0C8" Height="547" Width="929">
+            <TabControl HorizontalAlignment="Stretch" x:Name="tabControl1" VerticalAlignment="Stretch" SelectionChanged="tabControl1_SelectionChanged">
+                <TabItem Header="Fluggelände" x:Name="tabItemSpots">
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" ShowsPreview="True" Height="5" ResizeDirection="Rows" />
+                        <DataGrid ItemsSource="{Binding}" x:Name="dataGridFlightSpots" Grid.Row="0" VerticalAlignment="Stretch" AlternatingRowBackground="LightBlue" AlternationCount="2" AreRowDetailsFrozen="False" FontFamily="Comic Sans MS" FontSize="12" AutoGeneratingColumn="dataGridFlightSpots_AutoGeneratingColumn" IsReadOnly="True" />
+                        <Button Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="3"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Flüge" x:Name="tabItemFlights">
+                    <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="tabControlFlights" />
+                </TabItem>
+            </TabControl>
 
-        <Menu HorizontalAlignment="Left" x:Name="menu1" VerticalAlignment="Top">
-            <MenuItem Header="Datei" FontFamily="Comic Sans MS">
-                <MenuItem Header="Beenden" DataContext="{Binding}" Click="MenuItem_Click" />
-            </MenuItem>
-            <MenuItem Header="Flüge" FontFamily="Comic Sans MS">
-                <MenuItem Header="Hinzufügen" />
-            </MenuItem>
-        </Menu>
-        <TabControl HorizontalAlignment="Stretch" Margin="0,24,0,0" x:Name="tabControl1" VerticalAlignment="Stretch" Grid.ColumnSpan="2">
-            <TabItem Header="Fluggelände" x:Name="tabItemSpots">
-                <DataGrid ItemsSource="{Binding}" x:Name="dataGridFlightSpots" VerticalAlignment="Stretch" AlternatingRowBackground="#FFC7C7C7" AlternationCount="1" AreRowDetailsFrozen="False" FontFamily="Comic Sans MS" FontSize="12" AutoGeneratingColumn="dataGridFlightSpots_AutoGeneratingColumn" />
-            </TabItem>
-            <TabItem Header="Flüge" x:Name="tabItemFlights">
-                <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="tabControlFlights" >
-                </TabControl>
-            </TabItem>
-        </TabControl>
-    </Grid>
+        </Grid>
+    </Menu>
 </Window>
