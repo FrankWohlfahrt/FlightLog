@@ -84,7 +84,7 @@ namespace FlightLogGUI_WPF {
             DataGrid grid = new DataGrid();
             grid.HorizontalAlignment = HorizontalAlignment.Stretch;
             grid.VerticalAlignment = VerticalAlignment.Stretch;
-            grid.MouseDoubleClick += grid_MouseDoubleClick;
+            //grid.MouseDoubleClick += grid_MouseDoubleClick;
             grid.AutoGeneratingColumn += grid_AutoGeneratingColumn;
             SolidColorBrush brush = new SolidColorBrush(Colors.LightBlue);
             grid.AlternatingRowBackground = brush;
@@ -188,8 +188,25 @@ namespace FlightLogGUI_WPF {
             dlg.ShowDialog();
         }
 
-        private void tabControl1_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+        /// <summary>
+        /// selection of flightspot changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridFlightSpots_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (null == dataGridFlightSpots.SelectedItem) {
+                return;
+            }
 
+            FlightSpotDisplay fsDisplay = null;
+            if (dataGridFlightSpots.SelectedItem is FlightSpotDisplay) {
+                fsDisplay = (dataGridFlightSpots.SelectedItem as FlightSpotDisplay);
+            }
+
+            FlightSpotDBEntry fsDbEntry = m_fsdb.getFlightSpot(fsDisplay.Id);
+            if (null != fsDbEntry) {
+                fsInfo.update(fsDbEntry);
+            }
         }
     }
 }

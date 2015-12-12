@@ -14,7 +14,8 @@ namespace Utils {
         /// <param name="iMinutes"></param>
         public static void splitFloatTimeIntoHoursAndMinutes(float fTime, ref int iHours, ref int iMinutes) {
             iHours = (int)fTime;
-            iMinutes = (int)((fTime - iHours) * 60);
+            Single sMinutes = (fTime - iHours) * 60; 
+            iMinutes = (int)(Math.Round(sMinutes, 2, MidpointRounding.AwayFromZero));
         }
 
         /// <summary>

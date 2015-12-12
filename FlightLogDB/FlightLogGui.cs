@@ -89,7 +89,7 @@ namespace FlightLogGUI
             page.Controls.Add(dgv);
             tabControlFlights.TabPages.Add(page);
 
-            GridUtils.updateDataSourceKeepPosition(dgv, flights);
+            GridUtils.updateDataSourceKeepPosition(dgv, flights.OrderByDescending(f => f.Id).ToList());
         }
 
         /// <summary>

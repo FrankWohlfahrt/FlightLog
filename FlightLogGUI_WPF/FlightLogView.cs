@@ -13,7 +13,7 @@ namespace FlightLogGUI_WPF {
         public int Id { get; set; }
 
         [DisplayName("Datum")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         [DisplayName("Fluggerät")]
         public string Glider { get; set; }
@@ -36,10 +36,10 @@ namespace FlightLogGUI_WPF {
 
         public static List<FlightLogDisplay> getData(List<FlightLogEntry> logEntries) {
             List<FlightLogDisplay> displaydata = new List<FlightLogDisplay>();
-            foreach (FlightLogEntry log in logEntries) {
+            foreach (FlightLogEntry log in logEntries.OrderByDescending(l => l.Id)) {
                 FlightLogDisplay display = new FlightLogDisplay();
                 display.Id = log.Id;
-                display.Date = log.Date;
+                display.Date = String.Format("{0:dd.MM.yy}", log.Date);
                 display.Glider = log.Glider;
                 display.LaunchSite = log.LaunchSite;
                 display.LandingSite = log.LandingSite;

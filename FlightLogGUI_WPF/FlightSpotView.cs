@@ -10,6 +10,10 @@ namespace FlightLogGUI_WPF {
     /// class for database access
     /// </summary>
     public class FlightSpotDisplay {
+        [DisplayName("Id")]
+        [Browsable(false)]
+        public int Id { get; set; }
+
         [DisplayName("Name")]
         public String Name { get; set; }
 
@@ -56,6 +60,7 @@ namespace FlightLogGUI_WPF {
             m_fsdb.getFlightSpotList(out spots, Rating);
             foreach (FlightSpotDBEntry db in spots) {
                 FlightSpotDisplay display = new FlightSpotDisplay();
+                display.Id = db.ID;
                 display.Name = db.Name;
                 display.City = db.Name;
                 display.Country = db.City;

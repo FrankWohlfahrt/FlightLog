@@ -39,6 +39,7 @@
             this.tabPageSpots = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridViewSpots = new System.Windows.Forms.DataGridView();
+            this.textboxWeatherLink = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonOpenWeatherUrl = new System.Windows.Forms.Button();
             this.richTextBoxAirspaceInfo = new System.Windows.Forms.RichTextBox();
@@ -49,7 +50,6 @@
             this.tabPageFlights = new System.Windows.Forms.TabPage();
             this.tabControlFlights = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.textboxWeatherLink = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageSpots.SuspendLayout();
@@ -173,6 +173,13 @@
             this.dataGridViewSpots.TabIndex = 0;
             this.dataGridViewSpots.SelectionChanged += new System.EventHandler(this.dataGridViewSpots_SelectionChanged);
             // 
+            // textboxWeatherLink
+            // 
+            this.textboxWeatherLink.Location = new System.Drawing.Point(10, 34);
+            this.textboxWeatherLink.Name = "textboxWeatherLink";
+            this.textboxWeatherLink.Size = new System.Drawing.Size(724, 20);
+            this.textboxWeatherLink.TabIndex = 6;
+            // 
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -282,13 +289,6 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // textboxWeatherLink
-            // 
-            this.textboxWeatherLink.Location = new System.Drawing.Point(10, 34);
-            this.textboxWeatherLink.Name = "textboxWeatherLink";
-            this.textboxWeatherLink.Size = new System.Drawing.Size(724, 20);
-            this.textboxWeatherLink.TabIndex = 6;
-            // 
             // FlightLogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,6 +300,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FlightLogForm";
+            this.ShowIcon = false;
             this.Text = "FlightLog";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

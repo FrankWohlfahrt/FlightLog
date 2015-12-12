@@ -92,9 +92,16 @@
       <DependentUpon>FlightLogGUI.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="FlightSpotControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FlightLogView.cs" />
+    <Compile Include="FlightSpotControl.xaml.cs">
+      <DependentUpon>FlightSpotControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FlightSpotView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
